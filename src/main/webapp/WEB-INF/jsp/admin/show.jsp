@@ -47,6 +47,16 @@
 						<dt class="col-sm-3 text-right">Username:</dt>
 						<dd class="col-sm-9">${show_utente_attr.username}</dd>
 					</dl>
+					
+					<dl class="row">
+					  <dt class="col-sm-3 text-right">Esperienza Accumulata:</dt>
+					  <dd class="col-sm-9">${show_utente_attr.esperienzaAccumulata}</dd>
+			    	</dl>
+			    	
+			    	<dl class="row">
+					  <dt class="col-sm-3 text-right">Credito Residuo:</dt>
+					  <dd class="col-sm-9">${show_utente_attr.creditoAccumulato}</dd>
+			    	</dl>
 
 					<dl class="row">
 						<dt class="col-sm-3 text-right">Stato:</dt>

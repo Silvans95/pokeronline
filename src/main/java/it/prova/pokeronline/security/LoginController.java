@@ -9,7 +9,6 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,34 +87,5 @@ public class LoginController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/autoInsert", method = RequestMethod.GET)
-	public String create(Model model) {
-		model.addAttribute("mappaRuoliConSelezionati_attr", UtilityForm
-				.buildCheckedRolesForPages(RuoloDTO.createRuoloDTOListFromModelList(ruoloService.listAll()), null));
-		model.addAttribute("insert_utente_attr", new UtenteDTO());
-		return "/nsert";
-	}
-
-	// per la validazione devo usare i groups in quanto nella insert devo validare
-	// la pwd, nella edit no
-	@RequestMapping(value = "/save", method = {RequestMethod.POST,RequestMethod.GET})
-	public String save(
-			@Validated({ ValidationWithPassword.class,
-					ValidationNoPassword.class }) @ModelAttribute("insert_utente_attr") UtenteDTO utenteDTO,
-			BindingResult result, Model model, RedirectAttributes redirectAttrs) {
-
-		if (!result.hasFieldErrors("password") && !utenteDTO.getPassword().equals(utenteDTO.getConfermaPassword()))
-			result.rejectValue("confermaPassword", "password.diverse");
-		
-		if (result.hasErrors()) {
-			model.addAttribute("mappaRuoliConSelezionati_attr", UtilityForm.buildCheckedRolesForPages(
-					RuoloDTO.createRuoloDTOListFromModelList(ruoloService.listAll()), utenteDTO.getRuoliIds()));
-			return "/insert";
-		}
-		utenteService.inserisciNuovo(utenteDTO.buildUtenteModel(true));
-
-		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
-		return "redirect:login";
-	}
 
 }

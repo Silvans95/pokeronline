@@ -40,7 +40,7 @@
 			  
 			  <div class='card'>
 				    <div class='card-header'>
-				        <h5>Inserisci nuovo elemento</h5> 
+				        <h5>Modifica nuovo elemento</h5> 
 				    </div>
 				    <div class='card-body'>
 		
@@ -71,6 +71,23 @@
 										<input type="text" class="form-control ${status.error ? 'is-invalid' : ''}" name="username" id="username" placeholder="Inserire Username" value="${edit_utente_attr.username }" required>
 									</spring:bind>
 									<form:errors  path="username" cssClass="error_field" />
+								</div>
+								
+								<div class="col-md-6">
+									<label for="esperienzaAccumulata" class="form-label">Esperienza Accumulata <span class="text-danger">*</span></label>
+									<spring:bind path="esperienzaAccumulata">
+										<input type="text" class="form-control ${status.error ? 'is-invalid' : ''}" name="esperienzaAccumulata" id="esperienzaAccumulata" placeholder="Inserire l'Esperienza Accumulata" value="${edit_utente_attr.esperienzaAccumulata }" required>
+									</spring:bind>
+									<form:errors  path="esperienzaAccumulata" cssClass="error_field" />
+								</div>
+								
+								
+								<div class="col-md-6">
+									<label for="creditoAccumulato" class="form-label">Credito Accumulato <span class="text-danger">*</span></label>
+									<spring:bind path="creditoAccumulato">
+										<input type="text" class="form-control ${status.error ? 'is-invalid' : ''}" name="creditoAccumulato" id="creditoAccumulato" placeholder="Inserire l'Esperienza Accumulata" value="${edit_utente_attr.creditoAccumulato }" required>
+									</spring:bind>
+									<form:errors  path="creditoAccumulato" cssClass="error_field" />
 								</div>
 								 
 								

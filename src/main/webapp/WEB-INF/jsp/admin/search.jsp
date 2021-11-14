@@ -50,6 +50,12 @@
                             		title="formato : gg/mm/aaaa"  name="dateCreated" >
 							</div>
 							
+							
+								<div class="col-md-6">
+									<label for="esperienzaAccumulata" class="form-label">Cerca per esperienza</label>
+									<input type="number" class="form-control" name="esperienzaAccumulata" id="esperienzaAccumulata" placeholder="Cerca per esperienza" >
+								</div>
+							
 							<div class="col-md-3">
 								<label for="stato" class="form-label">Stato</label>
 								    <select class="form-select " id="stato" name="stato" >
@@ -72,6 +78,8 @@
 										</div>
 								  	</c:forEach>
 								</div>
+								
+								
 							
 							<div class="col-12">	
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>

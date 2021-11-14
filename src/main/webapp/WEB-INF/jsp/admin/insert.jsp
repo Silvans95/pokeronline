@@ -89,6 +89,23 @@
 									<form:errors  path="confermaPassword" cssClass="error_field" />
 								</div>
 								
+								<div class="col-md-6">
+									<label for="esperienzaAccumulata" class="form-label">Esperienza Accumulata <span class="text-danger">*</span></label>
+									<spring:bind path="esperienzaAccumulata">
+										<input type="text" class="form-control ${status.error ? 'is-invalid' : ''}" name="esperienzaAccumulata" id="esperienzaAccumulata" placeholder="Inserire l'Esperienza Accumulata" value="${insert_utente_attr.esperienzaAccumulata }" required>
+									</spring:bind>
+									<form:errors  path="esperienzaAccumulata" cssClass="error_field" />
+								</div>
+								
+								
+								<div class="col-md-6">
+									<label for="creditoAccumulato" class="form-label">Credito Accumulato <span class="text-danger">*</span></label>
+									<spring:bind path="creditoAccumulato">
+										<input type="text" class="form-control ${status.error ? 'is-invalid' : ''}" name="creditoAccumulato" id="creditoAccumulato" placeholder="Inserire l'Esperienza Accumulata" value="${insert_utente_attr.creditoAccumulato }" required>
+									</spring:bind>
+									<form:errors  path="creditoAccumulato" cssClass="error_field" />
+								</div>
+								
 								<%-- facendolo con i tag di spring purtroppo viene un po' spaginato, ho preferito a mano. E poi 
 									anche il binding andava gestito diversamente
 								

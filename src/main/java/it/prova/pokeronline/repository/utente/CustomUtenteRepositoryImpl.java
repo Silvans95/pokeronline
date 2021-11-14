@@ -47,6 +47,15 @@ public class CustomUtenteRepositoryImpl implements CustomUtenteRepository {
 			whereClauses.add("r.dateCreated >= :dateCreated ");
 			paramaterMap.put("dateCreated", example.getDateCreated());
 		}
+		
+		if (example.getCreditoAccumulato() != null) {
+			whereClauses.add("r.creditoAccumulato >= :creditoAccumulato ");
+			paramaterMap.put("creditoAccumulato", example.getCreditoAccumulato());
+		}
+		if (example.getEsperienzaAccumulata() != null) {
+			whereClauses.add("r.esperienzaAccumulata >= :esperienzaAccumulata ");
+			paramaterMap.put("esperienzaAccumulata", example.getEsperienzaAccumulata());
+		}
 
 		String role = "";
 		if (ruoli != null && ruoli.length > 0) {
