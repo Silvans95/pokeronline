@@ -28,8 +28,8 @@
 			        <h5>Lista dei risultati</h5> 
 			    </div>
 			    <div class='card-body'>
-			    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/utente/insert">Add New</a>
-			    	<a href="${pageContext.request.contextPath}/utente/search" class='btn btn-outline-secondary' >
+			    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/admin/insert">Add New</a>
+			    	<a href="${pageContext.request.contextPath}/admin/search" class='btn btn-outline-secondary' >
 				            <i class='fa fa-chevron-left'></i> Torna alla Ricerca
 				        </a>
 			    
@@ -52,8 +52,8 @@
 										<td>${utenteItem.username }</td>
 										<td>${utenteItem.stato }</td>
 										<td>
-											<a class="btn btn-sm btn-outline-secondary" href="laservletpervisualizzare">Visualizza</a>
-											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/utente/edit/${utenteItem.id }">Edit</a>
+											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/admin/show/${utenteItem.id }">Visualizza</a>
+											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/admin/edit/${utenteItem.id }">Edit</a>
 											<a id="changeStatoLink_#_${utenteItem.id }" class="btn btn-outline-${utenteItem.isAttivo()?'danger':'success'} btn-sm link-for-modal" data-bs-toggle="modal" data-bs-target="#confirmOperationModal"  >${utenteItem.isAttivo()?'Disabilita':'Abilita'}</a>
 											
 											<c:set var="hasToChange" value="${utenteItem.id == idResetted}" />
@@ -88,7 +88,7 @@
 	            <div class="modal-body">
 	                Continuare con l'operazione?
 	            </div>
-	            <form method="post" action="${pageContext.request.contextPath}/utente/cambiaStato" >
+	            <form method="post" action="${pageContext.request.contextPath}/admin/cambiaStato" >
 		            <div class="modal-footer">
 		            	<input type="hidden" name="idUtenteForChangingStato" id="idUtenteForChangingStato">
 		                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
@@ -125,7 +125,7 @@
 	            <div class="modal-body">
 	                Vuoi Resettare la password?
 	            </div>
-	            <form method="post" action="${pageContext.request.contextPath}/utente/resetPassword" >
+	            <form method="post" action="${pageContext.request.contextPath}/admin/resetPassword" >
 		            <div class="modal-footer">
 		            	<input type="hidden" name="idUtenteForResetPassword" id="idUtenteForResetPassword">
 		                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>

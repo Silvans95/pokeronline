@@ -28,7 +28,7 @@
 			    </div>
 			    <div class='card-body'>
 	
-						<form method="post" action="${pageContext.request.contextPath}/utente/list" class="row g-3">
+						<form method="post" action="${pageContext.request.contextPath}/admin/list" class="row g-3">
 						
 							<div class="col-md-6">
 								<label for="nome" class="form-label">Nome</label>
@@ -76,7 +76,7 @@
 							<div class="col-12">	
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
-								<a class="btn btn-outline-primary ml-2" href="${pageContext.request.contextPath}/utente/insert">Add New</a>
+								<a class="btn btn-outline-primary ml-2" href="${pageContext.request.contextPath}/admin/insert">Add New</a>
 							</div>
 	
 							

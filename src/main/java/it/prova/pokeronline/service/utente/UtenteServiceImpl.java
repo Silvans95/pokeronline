@@ -17,7 +17,7 @@ public class UtenteServiceImpl implements UtenteService {
 
 	@Autowired
 	private UtenteRepository repository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -30,7 +30,7 @@ public class UtenteServiceImpl implements UtenteService {
 	public Utente caricaSingoloUtente(Long id) {
 		return repository.findById(id).orElse(null);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Utente caricaSingoloUtenteConRuoli(Long id) {
 		return repository.findByIdConRuoli(id).orElse(null);
@@ -38,9 +38,9 @@ public class UtenteServiceImpl implements UtenteService {
 
 	@Transactional
 	public void aggiorna(Utente utenteInstance) {
-		//deve aggiornare solo nome, cognome, username, ruoli
+		// deve aggiornare solo nome, cognome, username, ruoli
 		Utente utenteReloaded = repository.findById(utenteInstance.getId()).orElse(null);
-		if(utenteReloaded == null)
+		if (utenteReloaded == null)
 			throw new RuntimeException("Elemento non trovato");
 		utenteReloaded.setNome(utenteInstance.getNome());
 		utenteReloaded.setCognome(utenteInstance.getCognome());
@@ -52,7 +52,7 @@ public class UtenteServiceImpl implements UtenteService {
 	@Transactional
 	public void inserisciNuovo(Utente utenteInstance) {
 		utenteInstance.setStato(StatoUtente.CREATO);
-		utenteInstance.setPassword(passwordEncoder.encode(utenteInstance.getPassword())); 
+		utenteInstance.setPassword(passwordEncoder.encode(utenteInstance.getPassword()));
 		utenteInstance.setDateCreated(new Date());
 		repository.save(utenteInstance);
 	}
@@ -63,14 +63,14 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Utente> findByExample(Utente example, String [] ruoli) {
+	public List<Utente> findByExample(Utente example, String[] ruoli) {
 		// TODO Da implementare
 		return repository.findByExample(example, ruoli);
 	}
 
 	@Transactional(readOnly = true)
 	public Utente eseguiAccesso(String username, String password) {
-		return repository.findByUsernameAndPasswordAndStato(username, password,StatoUtente.ATTIVO);
+		return repository.findByUsernameAndPasswordAndStato(username, password, StatoUtente.ATTIVO);
 	}
 
 	@Override
@@ -81,14 +81,14 @@ public class UtenteServiceImpl implements UtenteService {
 	@Transactional
 	public void changeUserAbilitation(Long utenteInstanceId) {
 		Utente utenteInstance = caricaSingoloUtente(utenteInstanceId);
-		if(utenteInstance == null)
+		if (utenteInstance == null)
 			throw new RuntimeException("Elemento non trovato.");
-		
-		if(utenteInstance.getStato() == null || utenteInstance.getStato().equals(StatoUtente.CREATO))
+
+		if (utenteInstance.getStato() == null || utenteInstance.getStato().equals(StatoUtente.CREATO))
 			utenteInstance.setStato(StatoUtente.ATTIVO);
-		else if(utenteInstance.getStato().equals(StatoUtente.ATTIVO))
+		else if (utenteInstance.getStato().equals(StatoUtente.ATTIVO))
 			utenteInstance.setStato(StatoUtente.DISABILITATO);
-		else if(utenteInstance.getStato().equals(StatoUtente.DISABILITATO))
+		else if (utenteInstance.getStato().equals(StatoUtente.DISABILITATO))
 			utenteInstance.setStato(StatoUtente.ATTIVO);
 	}
 
@@ -97,6 +97,22 @@ public class UtenteServiceImpl implements UtenteService {
 		return repository.findByUsername(username).orElse(null);
 	}
 
-	
+	@Transactional
+	public void cambiaPassword(String nuova, String vecchia, String conferma, Utente utenteInstance) {
+
+		// deve aggiornare solo la password
+		Utente utenteReloaded = repository.findById(utenteInstance.getId()).orElse(null);
+		if (utenteReloaded == null)
+			throw new RuntimeException("Elemento non trovato");
+
+		if (!passwordEncoder.matches(vecchia, utenteInstance.getPassword()))
+			throw new RuntimeException("Ultima password non corrispondente");
+
+		if (!nuova.equals(conferma))
+			throw new RuntimeException("Password non confermata");
+
+		utenteReloaded.setPassword(passwordEncoder.encode(nuova));
+		repository.save(utenteReloaded);
+	}
 
 }

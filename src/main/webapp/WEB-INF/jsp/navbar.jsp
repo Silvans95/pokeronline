@@ -33,8 +33,8 @@
 		      <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestione Utenze</a>
 		        <div class="dropdown-menu" aria-labelledby="dropdown01">
-		          <a class="dropdown-item" href="${pageContext.request.contextPath}/utente/search">Ricerca Utenti</a>
-		          <a class="dropdown-item" href="${pageContext.request.contextPath}/utente/insert">Inserisci Utente</a>
+		          <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/search">Ricerca Utenti</a>
+		          <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/insert">Inserisci Utente</a>
 		        </div>
 		      </li>
 		   </sec:authorize>
@@ -47,6 +47,7 @@
 				 Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
 					</a>
 			    <div class="dropdown-menu" aria-labelledby="dropdown01">
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/resetUserPassword">Reset Password</a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Logout</a>
 			    </div>
 		    </div>

@@ -29,4 +29,5 @@ public interface UtenteService {
 	
 	public Utente findByUsername(String username);
 
+	public void cambiaPassword(String nuova, String vecchia, String conferma, Utente utenteInstance);
 }
