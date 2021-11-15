@@ -30,7 +30,7 @@
           		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/insert">Crea tavolo</a></li>
           		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/findMyTables">I miei tavoli</a></li>
           		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/gestione">Gestisci tavoli</a></li>
-          		   </sec:authorize>
+          		</sec:authorize>
             </ul> 
           </li>
            <sec:authorize access="hasRole('ADMIN')">

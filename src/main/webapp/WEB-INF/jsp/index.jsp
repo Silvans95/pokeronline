@@ -73,12 +73,7 @@
 			<main class="flex-shrink-0">
 			  <div class="container">
 			  
-			  	<spring:hasBindErrors  name="film_giocatori_attr">
-					<div class="alert alert-danger " role="alert">
-						Attenzione!! Sono presenti errori di validazione
-					</div>
-				</spring:hasBindErrors>
-				
+			  	
 			  	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none':'' }" role="alert">
 				  ${errorMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
