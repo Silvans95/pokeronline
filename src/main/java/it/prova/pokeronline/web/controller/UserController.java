@@ -109,6 +109,7 @@ public class UserController {
 		return "user/insertCredito";		
 	}
 	
+	
 	@PostMapping("/saveCredito")
 	public String saveCredito(HttpServletRequest request) {
 		int credito = Integer.parseInt(request.getParameter("creditoAccumulato"));
@@ -118,6 +119,12 @@ public class UserController {
 		utenteService.aggiorna(utente);
 
 		return "index";		
+	}
+	
+
+	@GetMapping("/goToMyLastGame")
+	public String goToMyLastGame(Model model) {
+		return "user/goToMyLastGame";		
 	}
 
 	@GetMapping(value = "/searchUtentiAjax", produces = { MediaType.APPLICATION_JSON_VALUE })

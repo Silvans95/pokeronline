@@ -72,7 +72,7 @@ public class GiocoController {
 		utenteInSessione = utenteService.caricaSingoloUtente(utenteInSessione.getId());
 		Tavolo tavoloPerGiocare = tavoloService.caricaSingoloTavolo(idTavolo);
 		
-		utenteInSessione.setEsperienzaAccumulata(utenteInSessione.getEsperienzaAccumulata()+tavoloPerGiocare.getEsperienzaMin());
+		utenteInSessione.setEsperienzaAccumulata(utenteInSessione.getEsperienzaAccumulata()+tavoloPerGiocare.getEsperienzaMin()+10);
 		utenteInSessione.setCreditoAccumulato(utenteInSessione.getCreditoAccumulato()+tavoloPerGiocare.getCifraMinima());
 		utenteInSessione.setTavoloGioco(tavoloPerGiocare);
 		utenteService.aggiorna(utenteInSessione);
