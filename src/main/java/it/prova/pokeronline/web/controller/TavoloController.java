@@ -45,10 +45,10 @@ public class TavoloController {
 		return mv;
 	}
 
-	@GetMapping("/findMiei")
+	@GetMapping("/findMyTables")
 	public String findMieiTavoli(Model model, HttpServletRequest request) {
 		List<Tavolo> tavoli = tavoloService
-				.listAllMieiTavoli(utenteService.findByUsername(request.getUserPrincipal().getName()));
+				.listAllMyTables(utenteService.findByUsername(request.getUserPrincipal().getName()));
 		model.addAttribute("tavolo_list_attribute", tavoli);
 		return "tavolo/list";
 	}
@@ -119,7 +119,7 @@ public class TavoloController {
 		tavoloService.inserisciNuovo(tavoloDTO.buildTavoloModel());
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
-		return "redirect:/tavolo/findMiei";
+		return "redirect:/tavolo/findMyTables";
 	}
 
 	@GetMapping("/delete/{idTavolo}")
@@ -141,7 +141,7 @@ public class TavoloController {
 			request.setAttribute("errorMessage", "Ci sono ancora giocatori che stanno giocando");
 
 		List<Tavolo> tavoli = tavoloService
-				.listAllMieiTavoli(utenteService.findByUsername(request.getUserPrincipal().getName()));
+				.listAllMyTables(utenteService.findByUsername(request.getUserPrincipal().getName()));
 		model.addAttribute("tavolo_list_attribute", tavoli);
 
 		return "tavolo/list";

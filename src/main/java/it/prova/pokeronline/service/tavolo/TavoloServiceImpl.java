@@ -47,7 +47,7 @@ public class TavoloServiceImpl implements TavoloService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Tavolo> listAllMieiTavoli(Utente user) {
+	public List<Tavolo> listAllMyTables(Utente user) {
 		return repository.findAllByUtenteCreatore_IdIs(user.getId());
 	}
 

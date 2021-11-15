@@ -24,6 +24,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
 				<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/search">Ricerca tavolo</a></li>
           		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/insert">Crea tavolo</a></li>
+          		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/findMyTables">I miei tavoli</a></li>
             </ul> 
           </li>
            <sec:authorize access="hasRole('ADMIN')">
