@@ -23,8 +23,10 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
 				<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/search">Ricerca tavolo</a></li>
+				 <sec:authorize access="hasRole('ADMIN') || hasRole('SPECIAL_PLAYER')">
           		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/insert">Crea tavolo</a></li>
           		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/findMyTables">I miei tavoli</a></li>
+          		   </sec:authorize>
             </ul> 
           </li>
            <sec:authorize access="hasRole('ADMIN')">

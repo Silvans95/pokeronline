@@ -50,9 +50,13 @@
 			    	<dl class="row">
 			    	<dt class="col-sm-3 text-right">Giocatori Al Tavolo:</dt>
 			    	<dd class="col-sm-9">
+			    	<c:if test="${empty show_tavolo_attr.giocatori }">
+			    		<td>Non ci sono giocatori al tavolo<br></td>
+			    	</c:if>
 			    	<c:forEach items="${show_tavolo_attr.giocatori }" var="giocatoriItem">
 							<td>${giocatoriItem.username}<br></td>
 					</c:forEach>
+					
 					</dd>
 			    	</dl>
 			    	

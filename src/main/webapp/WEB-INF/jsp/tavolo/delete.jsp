@@ -1,4 +1,5 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="it" class="h-100">
 <head>
@@ -54,7 +55,21 @@
 					  <dt class="col-sm-3 text-right">Data Creazione:</dt>
 					  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${delete_tavolo_attr.dataCreazione}" /></dd>
 			    	</dl>
-			    <!-- end card body -->
+			   
+			    
+			       <dl class="row">
+			    	<dt class="col-sm-3 text-right">Giocatori Al Tavolo:</dt>
+			    	<dd class="col-sm-9">
+			    	<c:if test="${empty delete_tavolo_attr.giocatori }">
+			    		<td>Non ci sono giocatori al tavolo<br></td>
+			    	</c:if>
+			    	<c:forEach items="${delete_tavolo_attr.giocatori }" var="giocatoriItem">
+							<td>${giocatoriItem.username}<br></td>
+					</c:forEach>
+					
+					</dd>
+			    	</dl>
+			    	 <!-- end card body -->
 			    </div>
 			    
 			    <div class='card-footer'>

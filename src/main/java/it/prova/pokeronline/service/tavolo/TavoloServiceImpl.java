@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.pokeronline.dto.TavoloDTO;
 import it.prova.pokeronline.model.Tavolo;
 import it.prova.pokeronline.model.Utente;
 import it.prova.pokeronline.repository.tavolo.TavoloRepository;
@@ -42,7 +43,7 @@ public class TavoloServiceImpl implements TavoloService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Tavolo> findByExample(Tavolo example) {
+	public List<Tavolo> findByExample(TavoloDTO example) {
 		return repository.findByExample(example);
 	}
 
