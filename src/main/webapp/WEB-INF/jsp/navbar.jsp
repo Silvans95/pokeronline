@@ -51,6 +51,8 @@
 				 Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome } )
 					</a>
 			    <div class="dropdown-menu" aria-labelledby="dropdown01">
+			    
+			    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/aggiungiCredito">Aggiungi Credito</a>
 			    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/resetUserPassword">Reset Password</a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Logout</a>
 			    </div>

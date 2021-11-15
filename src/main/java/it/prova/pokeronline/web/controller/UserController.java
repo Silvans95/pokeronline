@@ -94,16 +94,31 @@ public class UserController {
 					RuoloDTO.createRuoloDTOListFromModelList(ruoloService.listAll()), utenteDTO.getRuoliIds()));
 			return "/user/insert";
 		}
-		
-		Long[] id = {3L};
+
+		Long[] id = { 3L };
 		utenteDTO.setRuoliIds(id);
-		
+
 		utenteService.inserisciNuovo(utenteDTO.buildUtenteModel(true));
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:login";
 	}
 	
+	@GetMapping("/aggiungiCredito")
+	public String ricaricaCredito(Model model) {
+		return "user/insertCredito";		
+	}
+	
+	@PostMapping("/saveCredito")
+	public String saveCredito(HttpServletRequest request) {
+		int credito = Integer.parseInt(request.getParameter("creditoAccumulato"));
+		Utente utente = utenteService.findByUsername(request.getUserPrincipal().getName());
+		utente.setCreditoAccumulato(utente.getCreditoAccumulato()+credito);
+		
+		utenteService.aggiorna(utente);
+
+		return "index";		
+	}
 
 	@GetMapping(value = "/searchUtentiAjax", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody String searchTavolo(@RequestParam String term) {
@@ -127,10 +142,11 @@ public class UserController {
 
 	@GetMapping("/caricaParametri")
 	public @ResponseBody String caricaParametri(HttpServletRequest request) {
-		
+
 		Utente utente = utenteService.findByUsername(request.getUserPrincipal().getName());
 		return buildJsonResponseSingleUser(utente);
 	}
+
 	private String buildJsonResponseSingleUser(Utente utente) {
 		JsonArray ja = new JsonArray();
 
