@@ -19,11 +19,13 @@ public interface TavoloService {
 
 	public void rimuovi(Tavolo tavoloInstance);
 	
-	public List<Tavolo> findByExample(TavoloDTO example);
+	public List<Tavolo> findByExample(Tavolo example);
 	
 	public List<Tavolo> listAllMyTables(Utente user);
 	
 	public Tavolo caricaSingoloTavoloConGiocatori(Long id);
 	
 	public void rimuoviById(Long id);
+	
+	public List<Tavolo> findByExampleGestione(TavoloDTO tavolo, String username);
 }

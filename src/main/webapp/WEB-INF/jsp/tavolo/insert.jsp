@@ -27,7 +27,7 @@
 			<div class="container">
 		
 					<%-- se l'attributo in request ha errori --%>
-					<spring:hasBindErrors  name="film_creatore_attr">
+					<spring:hasBindErrors  name="insert_tavolo_attr">
 						<%-- alert errori --%>
 						<div class="alert alert-danger " role="alert">
 							Attenzione!! Sono presenti errori di validazione

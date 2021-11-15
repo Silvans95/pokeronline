@@ -6,5 +6,9 @@ import it.prova.pokeronline.dto.TavoloDTO;
 import it.prova.pokeronline.model.Tavolo;
 
 public interface CustomTavoloRepository {
-	List<Tavolo> findByExample(TavoloDTO example);
+	List<Tavolo> findByExample(Tavolo example);
+
+	List<Tavolo> findByExampleMieiTavoli(TavoloDTO example, Long id);
+
+	List<Tavolo> findByExampleConCreatore(TavoloDTO example);
 }

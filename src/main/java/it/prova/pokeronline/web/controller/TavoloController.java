@@ -62,7 +62,7 @@ public class TavoloController {
 	@PostMapping("/list")
 	public String listTavoli(TavoloDTO tavoloExample, ModelMap model) {
 		System.out.println(tavoloExample);
-		List<Tavolo> tavoli = tavoloService.findByExample(tavoloExample);
+		List<Tavolo> tavoli = tavoloService.findByExample(tavoloExample.buildTavoloModel());
 		model.addAttribute("tavolo_list_attribute", TavoloDTO.createTavoloDTOListFromModelList(tavoli));
 		return "tavolo/list";
 	}
@@ -106,8 +106,8 @@ public class TavoloController {
 	}
 
 	@PostMapping("/saveUpdate")
-	public String saveUpdate(@Valid @ModelAttribute("update_tavolo_attr") TavoloDTO tavoloDTO, Model model,
-			BindingResult result, RedirectAttributes redirectAttrs, HttpServletRequest request) {
+	public String saveUpdate(@Valid @ModelAttribute("update_tavolo_attr") TavoloDTO tavoloDTO, BindingResult result,
+			RedirectAttributes redirectAttrs, HttpServletRequest request, Model model) {
 
 		if (result.hasErrors())
 			return "tavolo/edit";
@@ -153,6 +153,24 @@ public class TavoloController {
 				.listAllMyTables(utenteService.findByUsername(request.getUserPrincipal().getName()));
 		model.addAttribute("tavolo_list_attribute", tavoli);
 
+		return "tavolo/list";
+	}
+	
+
+	@GetMapping("/gestione")
+	public String gestione(Model model) {
+
+		model.addAttribute("search_gestione_tavolo_attr", new TavoloDTO());
+		return "tavolo/searchGestioneTavolo";
+	}
+
+	@PostMapping("/listGestione")
+	public String listGestione(@ModelAttribute("search_gestione_tavolo_attr") TavoloDTO tavoloDTO, Model model,
+			RedirectAttributes redirectAttrs, HttpServletRequest request) {
+		
+		List<Tavolo> tavoli = tavoloService.findByExampleGestione(tavoloDTO, request.getUserPrincipal().getName());
+
+		model.addAttribute("tavolo_list_attribute", TavoloDTO.createTavoloDTOListFromModelList(tavoli));
 		return "tavolo/list";
 	}
 }

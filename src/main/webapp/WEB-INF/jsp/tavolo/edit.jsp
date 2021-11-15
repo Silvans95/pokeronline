@@ -27,7 +27,7 @@
 			<div class="container">
 		
 					<%-- se l'attributo in request ha errori --%>
-					<spring:hasBindErrors  name="film_creatore_attr">
+					<spring:hasBindErrors  name="update_tavolo_attr">
 						<%-- alert errori --%>
 						<div class="alert alert-danger " role="alert">
 							Attenzione!! Sono presenti errori di validazione
@@ -46,7 +46,7 @@
 					    <div class='card-body'>
 			
 								<form:form method="post" modelAttribute="update_tavolo_attr" action="${pageContext.request.contextPath}/tavolo/saveUpdate" novalidate="novalidate" class="row g-3">
-								
+									
 									<input type="hidden" name="id" value="${update_tavolo_attr.id}">
 								
 									<div class="col-md-6">

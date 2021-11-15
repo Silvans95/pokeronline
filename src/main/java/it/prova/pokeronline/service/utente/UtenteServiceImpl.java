@@ -116,5 +116,10 @@ public class UtenteServiceImpl implements UtenteService {
 		utenteReloaded.setPassword(passwordEncoder.encode(nuova));
 		repository.save(utenteReloaded);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Utente> cercaByCognomeENomeILike(String term) {
+		return repository.findByCognomeIgnoreCaseContainingOrNomeIgnoreCaseContainingOrderByNomeAsc(term, term);
+	}
 
 }

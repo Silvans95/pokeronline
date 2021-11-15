@@ -17,6 +17,7 @@ public class TavoloDTO {
 
 	private Long id;
 
+	@NotNull(message = "{dataCreazione.notnull}")
 	private Date dataCreazione;
 
 	@NotBlank(message = "{denominazione.notblank}")

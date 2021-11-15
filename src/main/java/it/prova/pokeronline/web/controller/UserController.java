@@ -1,11 +1,13 @@
 package it.prova.pokeronline.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +16,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import it.prova.pokeronline.dto.RuoloDTO;
 import it.prova.pokeronline.dto.UtenteDTO;
@@ -34,9 +42,6 @@ public class UserController {
 
 	@Autowired
 	private RuoloService ruoloService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("/resetUserPassword")
 	public String resetUserPassword(Model model) {
@@ -95,5 +100,27 @@ public class UserController {
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:login";
 	}
+	
+
+	@GetMapping(value = "/searchUtentiAjax", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody String searchTavolo(@RequestParam String term) {
+
+		List<Utente> listaTavoloByTerm = utenteService.cercaByCognomeENomeILike(term);
+		return buildJsonResponse(listaTavoloByTerm);
+	}
+
+	private String buildJsonResponse(List<Utente> listaUtenti) {
+		JsonArray ja = new JsonArray();
+
+		for (Utente utenteItem : listaUtenti) {
+			JsonObject jo = new JsonObject();
+			jo.addProperty("value", utenteItem.getId());
+			jo.addProperty("label", utenteItem.getNome() + " " + utenteItem.getCognome());
+			ja.add(jo);
+		}
+
+		return new Gson().toJson(ja);
+	}
+
 
 }

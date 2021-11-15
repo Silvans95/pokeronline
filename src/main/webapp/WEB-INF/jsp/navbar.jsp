@@ -20,12 +20,13 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Tavoli</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07">
 				<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/search">Ricerca tavolo</a></li>
 				 <sec:authorize access="hasRole('ADMIN') || hasRole('SPECIAL_PLAYER')">
           		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/insert">Crea tavolo</a></li>
           		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/findMyTables">I miei tavoli</a></li>
+          		<li><a class="dropdown-item" href="${pageContext.request.contextPath}/tavolo/gestione">Gestisci tavoli</a></li>
           		   </sec:authorize>
             </ul> 
           </li>
