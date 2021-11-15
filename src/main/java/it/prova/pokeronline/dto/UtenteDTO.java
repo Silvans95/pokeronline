@@ -65,6 +65,16 @@ public class UtenteDTO {
 		this.stato = stato;
 		this.ruoli = new HashSet<>(ruoliList);
 	}
+	
+	
+	public UtenteDTO(String username, String nome, String cognome, StatoUtente stato, Integer esperienzaAccumulata, Integer creditoAccumulato) {
+		this.username = username;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.esperienzaAccumulata = esperienzaAccumulata;
+		this.creditoAccumulato = creditoAccumulato;
+		this.stato = stato;
+	}
 
 	public UtenteDTO(Long id, String username, String nome, String cognome, StatoUtente stato, Integer esperienzaAccumulata, Integer creditoAccumulato,
 			List<RuoloDTO> ruoliList) {

@@ -90,7 +90,7 @@
 			    <div class="p-5 mb-4 bg-light rounded-3">
 			      	<div class="container-fluid py-5">
 			      	
-				        <p class="col-md-8 fs-4">Clicca qui sotto per avere la lista dei tavoli</p>
+				        <h2 class="col-md-8 fs-4">Clicca qui sotto per avere la lista dei tavoli</h2>
 				      	<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/tavolo/search">Vai alla Ricerca</a>
 			      	</div>
 			      	<h2>Credito Residuo:</h2>

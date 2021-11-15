@@ -17,10 +17,7 @@
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   
-	   		<!-- Fixed navbar -->
-	   		<jsp:include page="../navbar.jsp"></jsp:include>
-	    
-			
+	 
 			<!-- Begin page content -->
 			<main class="flex-shrink-0">
 			  <div class="container">
@@ -47,7 +44,7 @@
 							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		
 		
-							<form:form modelAttribute="insert_utente_attr" method="post" action="save" novalidate="novalidate" class="row g-3">
+							<form:form modelAttribute="insert_utente_attr" method="post" action="${pageContext.request.contextPath}/user/save" novalidate="novalidate" class="row g-3">
 					
 							
 								<div class="col-md-6">
@@ -88,49 +85,14 @@
 									</spring:bind>
 									<form:errors  path="confermaPassword" cssClass="error_field" />
 								</div>
-								
-								<div class="col-md-6">
-									<label for="esperienzaAccumulata" class="form-label">Esperienza Accumulata <span class="text-danger">*</span></label>
-									<spring:bind path="esperienzaAccumulata">
-										<input type="text" class="form-control ${status.error ? 'is-invalid' : ''}" name="esperienzaAccumulata" id="esperienzaAccumulata" placeholder="Inserire l'Esperienza Accumulata" value="${insert_utente_attr.esperienzaAccumulata }" required>
-									</spring:bind>
-									<form:errors  path="esperienzaAccumulata" cssClass="error_field" />
-								</div>
-								
-								
-								<div class="col-md-6">
-									<label for="creditoAccumulato" class="form-label">Credito Accumulato <span class="text-danger">*</span></label>
-									<spring:bind path="creditoAccumulato">
-										<input type="text" class="form-control ${status.error ? 'is-invalid' : ''}" name="creditoAccumulato" id="creditoAccumulato" placeholder="Inserire l'Esperienza Accumulata" value="${insert_utente_attr.creditoAccumulato }" required>
-									</spring:bind>
-									<form:errors  path="creditoAccumulato" cssClass="error_field" />
-								</div>
-								
-								<%-- facendolo con i tag di spring purtroppo viene un po' spaginato, ho preferito a mano. E poi 
-									anche il binding andava gestito diversamente
-								
-								<div class="col-md-6 form-check">
-									<p>Ruoli:</p>
-									<form:checkboxes itemValue="id" itemLabel="codice"  element="div class='form-check'" items="${ruoli_totali_attr}" path="ruoli" cssClass=""/>
-								</div>
-								--%>
-								<div class="col-md-6 form-check">
-									<p>Ruoli:</p>
-									<c:forEach items="${mappaRuoliConSelezionati_attr}" var="ruoloEntry">
-										<div class="form-check">
-											  <input class="form-check-input" name="ruoliIds" type="checkbox" value="${ruoloEntry.key.id}" id="ruoloInput-${ruoloEntry.key.id}" ${ruoloEntry.value?'checked':'' }>
-											  <label class="form-check-label" for="ruoloInput-${ruoloEntry.key.id}" >
-											    ${ruoloEntry.key.codice}
-											  </label>
-										</div>
-								  	</c:forEach>
-								</div>
+							<input type="hidden" name="creditoAccumulato" value="${0}">
+							<input type="hidden" name="esperienzaAccumulata" value="${0}">
 								
 								<div class="col-12">
 									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
-									<a href="${pageContext.request.contextPath}/admin/search" class='btn btn-outline-secondary' >
-				            			<i class='fa fa-chevron-left'></i> Torna alla Ricerca
+									<a href="${pageContext.request.contextPath}/login	" class='btn btn-outline-secondary' >
+				            			<i class='fa fa-chevron-left'></i> Back
 				    			    </a>
 								</div>
 		

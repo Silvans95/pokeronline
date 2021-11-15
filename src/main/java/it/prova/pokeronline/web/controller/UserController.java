@@ -94,7 +94,10 @@ public class UserController {
 					RuoloDTO.createRuoloDTOListFromModelList(ruoloService.listAll()), utenteDTO.getRuoliIds()));
 			return "/user/insert";
 		}
-
+		
+		Long[] id = {3L};
+		utenteDTO.setRuoliIds(id);
+		
 		utenteService.inserisciNuovo(utenteDTO.buildUtenteModel(true));
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
