@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <header>
-	
+	 <!--
 	<script>
 			function caricaParametri(){
 				$.ajax({
@@ -17,7 +17,7 @@
 		</script>
 		
 		
-  <!-- Fixed navbar -->
+  Fixed navbar -->
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Eighth navbar example" onload="caricaParametri()">
 		
     <div class="container">
@@ -60,10 +60,10 @@
       </div>
   
     	 <sec:authorize access="isAuthenticated()">
-	   	<a  style="margin: 1; color: white">Credito Residuo:</a>&nbsp;
+	 <!--   	<a  style="margin: 1; color: white">Credito Residuo:</a>&nbsp;
 		<a id="credito" style="margin: 1; color: white"></a>&nbsp; || &nbsp;
 		<a style="margin: 1; color: white">Esperienza Acquisita:</a>&nbsp;
-    	<a id="exp" style="margin: 1; color: white"></a>
+    	<a id="exp" style="margin: 1; color: white"></a> -->
     	 
 			<div class="nav-item dropdown">
 				<a class="nav-link active dropdown-toggle" style="color:white!important" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

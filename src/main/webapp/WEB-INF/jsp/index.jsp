@@ -5,8 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html lang="it" class="h-100" >
 	 <head>
-	    <body class="d-flex flex-column h-100"  onload="caricaParametri()">
-	 
+	   
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="./header.jsp" />
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
@@ -21,7 +20,8 @@
 		        color: red; 
 		    }
 		</style>
-		
+	    <body class="d-flex flex-column h-100"  onload="caricaParametri()">
+	 	
 	<script>
 			function caricaParametri(){
 				$.ajax({
@@ -67,7 +67,7 @@
 	   
 	   		<!-- Fixed navbar -->
 	   		<jsp:include page="./navbar.jsp"></jsp:include>
-	    
+	 
 			
 			<!-- Begin page content -->
 			<main class="flex-shrink-0">

@@ -26,6 +26,7 @@ import com.google.gson.JsonObject;
 
 import it.prova.pokeronline.dto.RuoloDTO;
 import it.prova.pokeronline.dto.UtenteDTO;
+import it.prova.pokeronline.model.Tavolo;
 import it.prova.pokeronline.model.Utente;
 import it.prova.pokeronline.service.ruolo.RuoloService;
 import it.prova.pokeronline.service.utente.UtenteService;
@@ -123,8 +124,15 @@ public class UserController {
 	
 
 	@GetMapping("/goToMyLastGame")
-	public String goToMyLastGame(Model model) {
-		return "user/goToMyLastGame";		
+	public String goToMyLastGame(Model model, HttpServletRequest request) {
+		Utente utente = utenteService.findByUsername(request.getUserPrincipal().getName());
+		Tavolo tavoloPerGiocare = utente.getTavoloGioco();
+		
+		if (tavoloPerGiocare == null)
+			return "index";
+		
+		model.addAttribute("show_tavolo_attr", tavoloPerGiocare);
+		return "gioca/partita";		
 	}
 
 	@GetMapping(value = "/searchUtentiAjax", produces = { MediaType.APPLICATION_JSON_VALUE })
