@@ -64,7 +64,7 @@
 								<sec:authorize access="hasRole('ADMIN')">
 									<div class="col-md-6">
 										<label for="utenteCreatoreSearchInput" class="form-label">Creatore tavolo:</label>
-										<input class="form-control " type="text" id="utenteCreatoreSearchInput"
+										<input class="form-control " type="text" id="utenteCreatoreId"
 												name="utenteCreatoreInput" value="${search_gestione_tavolo_attr.utenteCreatore.nome}">
 										<input type="hidden" name="utenteCreatore.id" id="utenteCreatoreId" value="${search_gestione_tavolo_attr.utenteCreatore.id}">
 									</div>
@@ -80,7 +80,7 @@
 							</form>
 		
 				    		<script>
-								$("#utenteCreatoreSearchInput").autocomplete({
+								$("#utenteCreatoreId").autocomplete({
 									 source: function(request, response) {
 									        $.ajax({
 									            url: "${pageContext.request.contextPath }/user/searchUtentiAjax",
@@ -100,13 +100,13 @@
 									    },
 									//quando seleziono la voce nel campo deve valorizzarsi la descrizione
 								    focus: function(event, ui) {
-								        $("#utenteCreatoreSearchInput").val(ui.item.label)
+								        $("#utenteCreatoreId").val(ui.item.label)
 								        return false
 								    },
 								    minLength: 2,
 								    //quando seleziono la voce nel campo hidden deve valorizzarsi l'id
 								    select: function( event, ui ) {
-								    	$('#utenteCreatoreSearchInputId').val(ui.item.value);
+								    	$('#utenteCreatoreId').val(ui.item.value);
 								    	//console.log($('#registaId').val())
 								        return false;
 								    }

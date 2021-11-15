@@ -32,4 +32,5 @@ public interface UtenteService {
 	public void cambiaPassword(String nuova, String vecchia, String conferma, Utente utenteInstance);
 
 	public List<Utente> cercaByCognomeENomeILike(String term);
+
 }
