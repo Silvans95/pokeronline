@@ -122,5 +122,20 @@ public class UserController {
 		return new Gson().toJson(ja);
 	}
 
+	@GetMapping("/caricaParametri")
+	public @ResponseBody String caricaParametri(HttpServletRequest request) {
+		
+		Utente utente = utenteService.findByUsername(request.getUserPrincipal().getName());
+		return buildJsonResponseSingleUser(utente);
+	}
+	private String buildJsonResponseSingleUser(Utente utente) {
+		JsonArray ja = new JsonArray();
 
+		JsonObject jo = new JsonObject();
+		jo.addProperty("credito", utente.getCreditoAccumulato());
+		jo.addProperty("exp", utente.getEsperienzaAccumulata());
+		ja.add(jo);
+
+		return new Gson().toJson(ja);
+	}
 }

@@ -5,6 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html lang="it" class="h-100" >
 	 <head>
+	    <body class="d-flex flex-column h-100"  onload="caricaParametri()">
 	 
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="./header.jsp" />
@@ -20,10 +21,25 @@
 		        color: red; 
 		    }
 		</style>
+		
+	<script>
+			function caricaParametri(){
+				$.ajax({
+			        url: "${pageContext.request.contextPath }/user/caricaParametri",
+			        type: 'GET',
+			        dataType: 'json',
+			        success: function(res) {
+			        	$("#credito").html(res[0].credito);
+			        	$("#exp").html(res[0].exp);
+			        }
+			    });
+			}	
+		</script>
+		
 	   
 	   <title>PokerOnline</title>
 	 </head>
-	   <body class="d-flex flex-column h-100">
+	
 	   		
 	   		<!-- #####################################  -->
 	   		<!-- elementi grafici per le features in basso  -->
@@ -73,9 +89,14 @@
 		    	
 			    <div class="p-5 mb-4 bg-light rounded-3">
 			      	<div class="container-fluid py-5">
+			      	
 				        <p class="col-md-8 fs-4">Clicca qui sotto per avere la lista dei tavoli</p>
 				      	<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/tavolo/search">Vai alla Ricerca</a>
 			      	</div>
+			      	<h2>Credito Residuo:</h2>
+			      	<h2 id="credito" style="margin: 0; color: blue"></h2>
+			      	<h2>Esperienza Acquisita:</h2>
+			      	<h2 id="exp" style="margin: 0; color: green"></h2>
 		    	</div>
 			    
 			  </div>
@@ -87,7 +108,7 @@
 			        <div class="feature-icon bg-primary bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
 			        </div>
-			        <h2>Ricerca Registi</h2>
+			        <h2>Ricerca </h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
 			        <a href="${pageContext.request.contextPath}/regista/search" class="icon-link">
 			          Vai alla funzionalità
@@ -98,7 +119,7 @@
 			        <div class="feature-icon bg-primary bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
 			        </div>
-			        <h2>Inserisci Nuovo Regista</h2>
+			        <h2>Inserisci  </h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
 			        <a href="${pageContext.request.contextPath}/regista/insert" class="icon-link">
 			          Vai alla funzionalità
@@ -109,7 +130,7 @@
 			        <div class="feature-icon bg-primary bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
 			        </div>
-			        <h2>Ricerca Film</h2>
+			        <h2>Ricerca </h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
 			        <a href="${pageContext.request.contextPath}/film/search" class="icon-link">
 			          Vai alla funzionalità

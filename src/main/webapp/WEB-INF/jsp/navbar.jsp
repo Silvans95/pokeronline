@@ -1,8 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <header>
+
+		
   <!-- Fixed navbar -->
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Eighth navbar example">
+		
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,7 +48,7 @@
     	 <sec:authorize access="isAuthenticated()">
 			<div class="nav-item dropdown">
 				<a class="nav-link active dropdown-toggle" style="color:white!important" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				 Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
+				 Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome } )
 					</a>
 			    <div class="dropdown-menu" aria-labelledby="dropdown01">
 			    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/resetUserPassword">Reset Password</a>
@@ -56,6 +59,5 @@
     
     </div>
   </nav>
-  
   
 </header>
