@@ -54,7 +54,7 @@
 									<label for="confermaPassword" class="form-label">Conferma Password <span class="text-danger">*</span></label>
 										<input type="password" class="form-control ${status.error ? 'is-invalid' : ''}" name="confermaPassword" id="confermaPassword" placeholder="Confermare Password"  required>
 								</div>
-								
+							<br>	
 								<div class="col-12">
 									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 									<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
