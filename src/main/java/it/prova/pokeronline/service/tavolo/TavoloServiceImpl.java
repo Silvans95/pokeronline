@@ -77,5 +77,6 @@ public class TavoloServiceImpl implements TavoloService {
 		
 		return repository.findByExampleMieiTavoli(tavolo, utente.getId());
 	}
-
+	
+	
 }

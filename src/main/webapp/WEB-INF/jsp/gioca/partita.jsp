@@ -15,6 +15,11 @@
 	<!-- Begin page content -->
 	<main class="flex-shrink-0">
 	  	<div class="container">
+	  	
+	  		<div class="alert alert-success alert-dismissible fade show  ${successMessage==null?'d-none':'' }" role="alert">
+				  ${successMessage}
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+				</div>
 			
 			<div class='card'>
 			    <div class='card-header'>
@@ -33,12 +38,12 @@
 			    	</dl>
 			    	
 			    	<dl class="row">
-					  <dt class="col-sm-3 text-right">Esperienza minima:</dt>
+					  <dt class="col-sm-3 text-right">Esperienza Minima:</dt>
 					  <dd class="col-sm-9">${show_tavolo_attr.esperienzaMin}</dd>
 			    	</dl>
 			    	
 			    	<dl class="row">
-					  <dt class="col-sm-3 text-right">Credito minimo:</dt>
+					  <dt class="col-sm-3 text-right">Credito Minimo:</dt>
 					  <dd class="col-sm-9">${show_tavolo_attr.cifraMinima}</dd>
 			    	</dl>
 			    	
@@ -46,6 +51,7 @@
 					  <dt class="col-sm-3 text-right">Data Creazione:</dt>
 					  <dd class="col-sm-9"><fmt:formatDate type = "date" value = "${show_tavolo_attr.dataCreazione}" /></dd>
 			    	</dl>
+			    	
 			    	
 			    	<dl class="row">
 			    	<dt class="col-sm-3 text-right">Giocatori Al Tavolo:</dt>
@@ -60,22 +66,28 @@
 					</dd>
 			    	</dl>
 			    	
+			    	<!-- info Utente -->
+			    	
+					<!-- end info Utente -->
+					</div>
+			    	
 			    <!-- end card body -->
 			    </div>
 			    
-			    <div class='card-footer'>
-			    <form action="${pageContext.request.contextPath}/gioca/avviaGioco/${show_tavolo_attr.id}" method="post">
+			    <div class='card-footer' style="display: -webkit-inline-box">
+					<form action="${pageContext.request.contextPath}/gioca/partita/${show_tavolo_attr.id}" method="post">
 						  <button type="submit" name="submit" id="submit" class="btn btn-primary">Gioca</button>
-				        <a href="${pageContext.request.contextPath }/tavolo/search" class='btn btn-outline-secondary' style='width:80px'>
-				            <i class='fa fa-chevron-left'></i> Back
-				        </a>
-			        </form>
-			    </div>
+				    </form> &nbsp;&nbsp;
+				    <form action="${pageContext.request.contextPath}/gioca/exit/${show_tavolo_attr.id}" method="post">
+						  <button type="submit" name="submit" id="submit" class="btn btn-dark">Esci</button>
+					</form>
+				  <br>
+				 	
+				</div>
 			<!-- end card -->
 			</div>	
 	
 		<!-- end container -->  
-		</div>
 		
 	</main>
 	<jsp:include page="../footer.jsp" />

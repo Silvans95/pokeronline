@@ -28,4 +28,5 @@ public interface TavoloService {
 	public void rimuoviById(Long id);
 	
 	public List<Tavolo> findByExampleGestione(TavoloDTO tavolo, String username);
+
 }
