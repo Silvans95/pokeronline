@@ -42,31 +42,31 @@
 							
 								<div class="col-md-6">
 									<label for="denominazione" class="form-label">Denominazione</label>
-									<input type="text" name="denominazione" id="denominazione" class="form-control" placeholder="Inserire denominazione" value="${search_gestione_tavolo_attr.denominazione}">
+									<input type="text" name="denominazione" id="denominazione" class="form-control" placeholder="Inserire denominazione" >
 								</div>
 								
 								<div class="col-md-6">
 									<label for="dataCreazione" class="form-label">Data di Creazione</label>
 	                        		<input class="form-control" id="dataCreazione" type="date" placeholder="dd/MM/yy"
-	                            		title="formato : gg/mm/aaaa"  name="dataCreazione" value="${search_gestione_tavolo_attr.dataCreazione}">
+	                            		title="formato : gg/mm/aaaa"  name="dataCreazione" >
 								</div>
 								
 								<div class="col-md-6">
 									<label for="cifraMinima" class="form-label">Cifra minima</label>
-									<input type="number" name="cifraMinima" id="cifraMinima" class="form-control" placeholder="Inserire cifra minima" value="${search_gestione_tavolo_attr.cifraMinima}">
+									<input type="number" name="cifraMinima" id="cifraMinima" class="form-control" placeholder="Inserire cifra minima" >
 								</div>
 								
 								<div class="col-md-6">
 									<label for="esperienzaMinima" class="form-label">Esperienza minima</label>
-									<input type="number" class="form-control" name="esperienzaMinima" id="esperienzaMinima" placeholder="Inserire esperienza minima" value="${search_gestione_tavolo_attr.esperienzaMin}">
+									<input type="number" class="form-control" name="esperienzaMinima" id="esperienzaMinima" placeholder="Inserire esperienza minima" >
 								</div>
 								
 								<sec:authorize access="hasRole('ADMIN')">
 									<div class="col-md-6">
 										<label for="utenteCreatoreSearchInput" class="form-label">Creatore tavolo:</label>
-										<input class="form-control " type="text" id="utenteCreatoreId"
-												name="utenteCreatoreInput" value="${search_gestione_tavolo_attr.utenteCreatore.nome}">
-										<input type="hidden" name="utenteCreatore.id" id="utenteCreatoreId" value="${search_gestione_tavolo_attr.utenteCreatore.id}">
+										<input class="form-control " type="text" id="utenteCreatoreInputId"
+												name="utenteCreatoreInput" >
+										<input type="hidden" name="utenteCreatore.id" id="utenteCreatoreId" >
 									</div>
 								</sec:authorize>
 								
@@ -80,7 +80,7 @@
 							</form>
 		
 				    		<script>
-								$("#utenteCreatoreId").autocomplete({
+								$("#utenteCreatoreInputId").autocomplete({
 									 source: function(request, response) {
 									        $.ajax({
 									            url: "${pageContext.request.contextPath }/user/searchUtentiAjax",
@@ -100,7 +100,7 @@
 									    },
 									//quando seleziono la voce nel campo deve valorizzarsi la descrizione
 								    focus: function(event, ui) {
-								        $("#utenteCreatoreId").val(ui.item.label)
+								        $("#utenteCreatoreInputId").val(ui.item.label)
 								        return false
 								    },
 								    minLength: 2,

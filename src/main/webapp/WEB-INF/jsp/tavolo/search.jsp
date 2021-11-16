@@ -89,19 +89,19 @@
 								<input type="text" name="cifraMinima" id="cifraMinima" class="form-control " placeholder="Inserire puntata minima" value="${search_tavolo_attr.cifraMinima }">
 							</div>
 							
-							<div class="col-md-6">
-								<label for="utenteCreatoreSearchInput" class="form-label">Creatore tavolo:</label>
-								<input class="form-control " type="text" id="utenteCreatoreSearchInput"
-										name="utenteCreatoreInput" value="${search_tavolo_attr.utenteCreatore.nome}${search_tavolo_attr.utenteCreatore.cognome}">
-								<input type="hidden" name="utenteCreatore.id" id="utenteCreatoreId" value="${search_tavolo_attr.utenteCreatore.id}">
-							</div>
-							
-							<div class="col-md-6">
-								<label for="giocatoriSearchInput" class="form-label">Giocatori:</label>
-								<input class="form-control " type="text" id="giocatoriSearchInput"
-										name="giocatoriInput" value="${search_tavolo_attr.giocatoreCercato.nome}">
-								<input type="hidden" name="giocatori.id" id="giocatoriId" value="${search_tavolo_attr.giocatoreCercato.id}">
-							</div>
+								<div class="col-md-6">
+										<label for="utenteCreatoreSearchInput" class="form-label">Creatore tavolo:</label>
+										<input class="form-control " type="text" id="utenteCreatoreInputId"
+												name="utenteCreatoreInput" >
+										<input type="hidden" name="utenteCreatore.id" id="utenteCreatoreId" >
+									</div>
+									
+								<div class="col-md-6">
+									<label for="utenteGiocatoreSearchInput" class="form-label">Giocatori:</label>
+									<input class="form-control " type="text" id="utenteGiocatoreSearchInput"
+											name="utenteGiocatoreSearchInput" value="${tavolo_list_attribute.giocatoreCercato.nome}${tavolo_list_attribute.giocatoreCercato.cognome}">
+									<input type="hidden" name="giocatoreCercato" id="utenteGiocatoreSearchInputId" value="${tavolo_list_attribute.giocatoreCercato}">
+								</div>
 	
 							<div class="col-12">	
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
@@ -109,72 +109,75 @@
 										
 						</form>
 						
+						
 						<script>
-							$("#utenteCreatoreSearchInput").autocomplete({
-								 source: function(request, response) {
-								        $.ajax({
-								            url: "../utente/searchUtentiAjax",
-								            datatype: "json",
-								            data: {
-								                term: request.term,   
-								            },
-								            success: function(data) {
-								                response($.map(data, function(item) {
-								                    return {
-									                    label: item.label,
-									                    value: item.value
-								                    }
-								                }))
-								            }
-								        })
+								$("#utenteCreatoreInputId").autocomplete({
+									 source: function(request, response) {
+									        $.ajax({
+									            url: "${pageContext.request.contextPath }/user/searchUtentiAjax",
+									            datatype: "json",
+									            data: {
+									                term: request.term,   
+									            },
+									            success: function(data) {
+									                response($.map(data, function(item) {
+									                    return {
+										                    label: item.label,
+										                    value: item.value
+									                    }
+									                }))
+									            }
+									        })
+									    },
+									//quando seleziono la voce nel campo deve valorizzarsi la descrizione
+								    focus: function(event, ui) {
+								        $("#utenteCreatoreInputId").val(ui.item.label)
+								        return false
 								    },
-								//quando seleziono la voce nel campo deve valorizzarsi la descrizione
-							    focus: function(event, ui) {
-							        $("#utenteCreatoreSearchInput").val(ui.item.label)
-							        return false
-							    },
-							    minLength: 2,
-							    //quando seleziono la voce nel campo hidden deve valorizzarsi l'id
-							    select: function( event, ui ) {
-							    	$('#utenteCreatoreSearchInputId').val(ui.item.value);
-							    	//console.log($('#registaId').val())
-							        return false;
-							    }
-							});
-						</script>
-						<script>
-							$("#giocatoriSearchInput").autocomplete({
-								 source: function(request, response) {
-								        $.ajax({
-								            url: "../utente/searchUtentiAjax",
-								            datatype: "json",
-								            data: {
-								                term: request.term,   
-								            },
-								            success: function(data) {
-								                response($.map(data, function(item) {
-								                    return {
-									                    label: item.label,
-									                    value: item.value
-								                    }
-								                }))
-								            }
-								        })
+								    minLength: 2,
+								    //quando seleziono la voce nel campo hidden deve valorizzarsi l'id
+								    select: function( event, ui ) {
+								    	$('#utenteCreatoreId').val(ui.item.value);
+								    	//console.log($('#registaId').val())
+								        return false;
+								    }
+								});
+							</script>
+						
+						
+					<script>
+								$("#utenteGiocatoreSearchInput").autocomplete({
+									 source: function(request, response) {
+									        $.ajax({
+									            url: "${pageContext.request.contextPath }/utente/searchUtentiAjax",
+									            datatype: "json",
+									            data: {
+									                term: request.term,   
+									            },
+									            success: function(data) {
+									                response($.map(data, function(item) {
+									                    return {
+										                    label: item.label,
+										                    value: item.value
+									                    }
+									                }))
+									            }
+									        })
+									    },
+									//quando seleziono la voce nel campo deve valorizzarsi la descrizione
+								    focus: function(event, ui) {
+								        $("#utenteGiocatoreSearchInput").val(ui.item.label)
+								        return false
 								    },
-								//quando seleziono la voce nel campo deve valorizzarsi la descrizione
-							    focus: function(event, ui) {
-							        $("#giocatoriSearchInput").val(ui.item.label)
-							        return false
-							    },
-							    minLength: 2,
-							    //quando seleziono la voce nel campo hidden deve valorizzarsi l'id
-							    select: function( event, ui ) {
-							    	$('#giocatoriSearchInput').val(ui.item.value);
-							    	//console.log($('#registaId').val())
-							        return false;
-							    }
-							});
-						</script>
+								    minLength: 2,
+								    //quando seleziono la voce nel campo hidden deve valorizzarsi l'id
+								    select: function( event, ui ) {
+								    	$('#utenteGiocatoreSearchInputId').val(ui.item.value);
+								    	//console.log($('#registaId').val())
+								        return false;
+								    }
+								});
+							</script>
 							<!-- end card-body -->			   
 				    	</div>
 				
