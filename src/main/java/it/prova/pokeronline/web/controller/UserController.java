@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -85,8 +86,12 @@ public class UserController {
 	public String save(
 			@Validated({ ValidationWithPassword.class,
 					ValidationNoPassword.class }) @ModelAttribute("insert_utente_attr") UtenteDTO utenteDTO,
-			BindingResult result, Model model, RedirectAttributes redirectAttrs) {
+			BindingResult result, RedirectAttributes redirectAttrs, Model model, HttpServletRequest request) {
 
+		if (!(utenteService.findByUsername(utenteDTO.getUsername()) == null)) {
+			request.setAttribute("errorMessage", "Username già in uso");
+			return "/user/insert";
+		}
 		if (!result.hasFieldErrors("password") && !utenteDTO.getPassword().equals(utenteDTO.getConfermaPassword()))
 			result.rejectValue("confermaPassword", "password.diverse");
 
@@ -104,35 +109,33 @@ public class UserController {
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:login";
 	}
-	
+
 	@GetMapping("/aggiungiCredito")
 	public String ricaricaCredito(Model model) {
-		return "user/insertCredito";		
+		return "user/insertCredito";
 	}
-	
-	
+
 	@PostMapping("/saveCredito")
 	public String saveCredito(HttpServletRequest request) {
 		int credito = Integer.parseInt(request.getParameter("creditoAccumulato"));
 		Utente utente = utenteService.findByUsername(request.getUserPrincipal().getName());
-		utente.setCreditoAccumulato(utente.getCreditoAccumulato()+credito);
-		
+		utente.setCreditoAccumulato(utente.getCreditoAccumulato() + credito);
+
 		utenteService.aggiorna(utente);
 
-		return "index";		
+		return "index";
 	}
-	
 
 	@GetMapping("/goToMyLastGame")
 	public String goToMyLastGame(Model model, HttpServletRequest request) {
 		Utente utente = utenteService.findByUsername(request.getUserPrincipal().getName());
 		Tavolo tavoloPerGiocare = utente.getTavoloGioco();
-		
+
 		if (utente.getTavoloGioco() == null)
 			return "index";
-		
+
 		model.addAttribute("show_tavolo_attr", tavoloPerGiocare);
-		return "gioca/partita";		
+		return "gioca/partita";
 	}
 
 	@GetMapping(value = "/searchUtentiAjax", produces = { MediaType.APPLICATION_JSON_VALUE })

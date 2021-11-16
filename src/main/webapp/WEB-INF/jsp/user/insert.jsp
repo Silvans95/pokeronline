@@ -4,7 +4,10 @@
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
-	 
+	  <link href="${pageContext.request.contextPath}/assets/css/features.css" rel="stylesheet">
+	   <link href="assets/css/home.css" rel="stylesheet">
+	   <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/jqueryUI/jquery-ui.min.css" />
+	
 	 	<!-- Common imports in pages -->
 	 	<jsp:include page="../header.jsp" />
 	 	 <style>
@@ -15,8 +18,8 @@
 	   
 	   <title>Inserisci Nuovo Elemento</title>
 	 </head>
+	 
 	   <body class="d-flex flex-column h-100">
-	   
 	 
 			<!-- Begin page content -->
 			<main class="flex-shrink-0">
