@@ -48,7 +48,8 @@
     	 
 			<div class="nav-item dropdown">
 				<a class="nav-link active dropdown-toggle" style="color:white!important" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				 Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome } )
+				
+				 Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome }  )
 					</a>
 			    <div class="dropdown-menu" aria-labelledby="dropdown01">
 			    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/goToMyLastGame">Torna al tavolo</a>
