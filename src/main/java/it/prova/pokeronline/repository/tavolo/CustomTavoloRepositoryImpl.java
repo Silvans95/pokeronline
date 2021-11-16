@@ -53,7 +53,7 @@ public class CustomTavoloRepositoryImpl implements CustomTavoloRepository {
 			whereClauses.add(" uc.id = :idUtenteCreatore ");
 			paramaterMap.put("idUtenteCreatore", example.getUtenteCreatore().getId());
 		}
-		if (example.getGiocatoreCercato() != null) {
+		if (example.getGiocatoreCercato() != null && example.getGiocatoreCercato().getId() != null) {
 			whereClauses.add(" gio.id = :giocatoreCercatoId ");
 			paramaterMap.put("giocatoreCercatoId", example.getGiocatoreCercato().getId());
 		}
