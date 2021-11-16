@@ -151,11 +151,4 @@ public class TavoloDTO {
 				this.utenteCreatore.buildUtenteModel(false), this.giocatori);
 	}
 
-	@Override
-	public String toString() {
-		return "TavoloDTO [id=" + id + ", dateCreated=" + dataCreazione + ", denominazione=" + denominazione
-				+ ", esperienzaMinima=" + esperienzaMin + ", cifraMinima=" + cifraMinima + ", utenteCreatore="
-				+ utenteCreatore + ", utentiGiocatori=" + giocatori + "]";
-	}
-
 }

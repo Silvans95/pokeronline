@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import it.prova.pokeronline.dto.TavoloDTO;
 import it.prova.pokeronline.model.Tavolo;
-import it.prova.pokeronline.model.Utente;
 
 public class CustomTavoloRepositoryImpl implements CustomTavoloRepository {
 
@@ -24,12 +23,17 @@ public class CustomTavoloRepositoryImpl implements CustomTavoloRepository {
 	public List<Tavolo> findByExample(TavoloDTO example) {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
-		String gioc = "";
+
+		if (example.getEsperienzaMin() == null)
+			example.setEsperienzaMin(1);
+
+		if (example.getCifraMinima() == null)
+			example.setCifraMinima(1);
 
 		StringBuilder queryBuilder = new StringBuilder(
-				"select distinct r from Tavolo r join fetch r.utenteCreatore uc join fetch r.giocatori g where r.id = r.id");
+				"select distinct r from Tavolo r join fetch r.utenteCreatore uc left join fetch r.giocatori gio where r.id = r.id ");
 
-		if (StringUtils.isNotEmpty(example.getDenominazione())) {
+		if (StringUtils.isNotBlank(example.getDenominazione())) {
 			whereClauses.add(" r.denominazione  like :denominazione ");
 			paramaterMap.put("denominazione", "%" + example.getDenominazione() + "%");
 		}
@@ -39,32 +43,24 @@ public class CustomTavoloRepositoryImpl implements CustomTavoloRepository {
 		}
 		if (example.getEsperienzaMin() >= 0) {
 			whereClauses.add(" r.esperienzaMin >= :esperienzaMin ");
-			paramaterMap.put("esperienzaMin", "%" + example.getEsperienzaMin() + "%");
+			paramaterMap.put("esperienzaMin", example.getEsperienzaMin());
 		}
 		if (example.getCifraMinima() >= 0) {
 			whereClauses.add(" r.cifraMinima >= :cifraMinima ");
 			paramaterMap.put("cifraMinima", example.getCifraMinima());
 		}
-		if (example.getUtenteCreatore() != null) {
+		if (example.getUtenteCreatore() != null && example.getUtenteCreatore().getId() != null) {
 			whereClauses.add(" uc.id = :idUtenteCreatore ");
 			paramaterMap.put("idUtenteCreatore", example.getUtenteCreatore().getId());
 		}
-
-		if (example.getGiocatori() != null && example.getGiocatori().size() > 0) {
-			int i = 0;
-			for (Utente giocatore : example.getGiocatori()) {
-				if (i == 0)
-					gioc += " g.id = " + giocatore.getId();
-				else
-					gioc += " or g.id = " + giocatore.getId();
-				i++;
-			}
+		if (example.getGiocatoreCercato() != null) {
+			whereClauses.add(" gio.id = :giocatoreCercatoId ");
+			paramaterMap.put("giocatoreCercatoId", example.getGiocatoreCercato().getId());
 		}
 
 		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");
 		queryBuilder.append(StringUtils.join(whereClauses, " and "));
-		if (example.getGiocatori() != null)
-			queryBuilder.append(" and " + gioc);
+		System.out.println(queryBuilder);
 		TypedQuery<Tavolo> typedQuery = entityManager.createQuery(queryBuilder.toString(), Tavolo.class);
 
 		for (String key : paramaterMap.keySet()) {
