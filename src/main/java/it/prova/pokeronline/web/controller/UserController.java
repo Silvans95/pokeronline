@@ -128,7 +128,7 @@ public class UserController {
 		Utente utente = utenteService.findByUsername(request.getUserPrincipal().getName());
 		Tavolo tavoloPerGiocare = utente.getTavoloGioco();
 		
-		if (tavoloPerGiocare == null)
+		if (utente.getTavoloGioco() == null)
 			return "index";
 		
 		model.addAttribute("show_tavolo_attr", tavoloPerGiocare);
