@@ -61,8 +61,7 @@ public class TavoloController {
 
 	@PostMapping("/list")
 	public String listTavoli(TavoloDTO tavoloExample, ModelMap model) {
-		System.out.println(tavoloExample);
-		List<Tavolo> tavoli = tavoloService.listAllTavoli();
+		List<Tavolo> tavoli = tavoloService.findByExample(tavoloExample);
 		model.addAttribute("tavolo_list_attribute", TavoloDTO.createTavoloDTOListFromModelList(tavoli));
 		return "tavolo/listUniversal";
 	}

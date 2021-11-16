@@ -21,7 +21,7 @@ public class CustomTavoloRepositoryImpl implements CustomTavoloRepository {
 	private EntityManager entityManager;
 
 	@Override
-	public List<Tavolo> findByExample(Tavolo example) {
+	public List<Tavolo> findByExample(TavoloDTO example) {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 		String gioc = "";
@@ -125,10 +125,10 @@ public class CustomTavoloRepositoryImpl implements CustomTavoloRepository {
 		List<String> whereClauses = new ArrayList<String>();
 
 		if (example.getEsperienzaMin() == null)
-			example.setEsperienzaMin(1);
+			example.setEsperienzaMin(0);
 
 		if (example.getCifraMinima() == null)
-			example.setCifraMinima(1);
+			example.setCifraMinima(0);
 
 		StringBuilder queryBuilder = new StringBuilder(
 				"select r from Tavolo r join fetch r.utenteCreatore uc where r.id = r.id");

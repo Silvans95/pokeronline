@@ -90,6 +90,11 @@
 							</div>
 							
 								<div class="col-md-6">
+									<label for="esperienzaMinima" class="form-label">Esperienza minima</label>
+									<input type="number" class="form-control" name="esperienzaMinima" id="esperienzaMinima" placeholder="Inserire esperienza minima" >
+								</div>
+							
+								<div class="col-md-6">
 										<label for="utenteCreatoreSearchInput" class="form-label">Creatore tavolo:</label>
 										<input class="form-control " type="text" id="utenteCreatoreInputId"
 												name="utenteCreatoreInput" >
@@ -99,8 +104,8 @@
 								<div class="col-md-6">
 									<label for="utenteGiocatoreSearchInput" class="form-label">Giocatori:</label>
 									<input class="form-control " type="text" id="utenteGiocatoreSearchInput"
-											name="utenteGiocatoreSearchInput" value="${tavolo_list_attribute.giocatoreCercato.nome}${tavolo_list_attribute.giocatoreCercato.cognome}">
-									<input type="hidden" name="giocatoreCercato" id="utenteGiocatoreSearchInputId" value="${tavolo_list_attribute.giocatoreCercato}">
+											name="utenteGiocatoreSearchInput" >
+									<input type="hidden" name="tavolo.id" id="utenteGiocatoreSearchInputId" >
 								</div>
 	
 							<div class="col-12">	
